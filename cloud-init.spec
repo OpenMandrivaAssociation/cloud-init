@@ -2,7 +2,7 @@
 
 Summary:	Cloud instance initialization tool
 Name:		cloud-init
-Version:	20.3
+Version:	21.4
 Release:	1
 Source0:	https://github.com/canonical/cloud-init/archive/%{version}/%{name}-%{version}.tar.gz
 License:	Dual GPLv3/Apache 2.0
@@ -40,6 +40,8 @@ python setup.py install --root=%{buildroot} --prefix=%{_prefix}
 /lib/systemd/system-generators/cloud-init-generator
 /lib/systemd/system/cloud*.target
 /lib/systemd/system/cloud*.service
+/etc/systemd/system/sshd-keygen@.service.d
+/lib/systemd/system/cloud-init-hotplugd.socket
 %{_datadir}/bash-completion/completions/*
 %{_sysconfdir}/cloud
 %{_sysconfdir}/NetworkManager/dispatcher.d/hook-network-manager
