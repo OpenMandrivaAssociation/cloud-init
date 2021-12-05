@@ -68,9 +68,9 @@ diff -up cloud-init-21.4/cloudinit/distros/openmandriva.py.1~ cloud-init-21.4/cl
 +#
 +# This file is part of cloud-init. See LICENSE file for license information.
 +
-+from cloudinit.distros import fedora
++from cloudinit.distros import ubuntu
 +
-+class Distro(fedora.Distro):
++class Distro(ubuntu.Distro):
 +    pass
 +
 +# vi: ts=4 expandtab
