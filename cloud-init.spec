@@ -3,7 +3,7 @@
 Summary:	Cloud instance initialization tool
 Name:		cloud-init
 Version:	21.4
-Release:	6
+Release:	7
 Source0:	https://github.com/canonical/cloud-init/archive/%{version}/%{name}-%{version}.tar.gz
 Patch0:		cloud-init-21.4-openmandriva.patch
 License:	Dual GPLv3/Apache 2.0

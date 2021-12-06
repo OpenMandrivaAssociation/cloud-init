@@ -145,7 +145,7 @@ diff -up cloud-init-21.4/config/cloud.cfg.tmpl.1~ cloud-init-21.4/config/cloud.c
       lock_passwd: True
       gecos: EC2 Default User
 +{% elif variant == "openmandriva" %}
-+     name: omv
++     name: openmandriva
 +     lock_passwd: True
 +     gecos: OpenMandriva User
 +     shell: /bin/bash
