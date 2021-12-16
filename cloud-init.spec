@@ -3,9 +3,12 @@
 Summary:	Cloud instance initialization tool
 Name:		cloud-init
 Version:	21.4
-Release:	7
+Release:	8
 Source0:	https://github.com/canonical/cloud-init/archive/%{version}/%{name}-%{version}.tar.gz
 Patch0:		cloud-init-21.4-openmandriva.patch
+# Since Cloud-Init doesn't have NM integration without NM's ifcfg-rh plugin,
+# let's see if we can make it use networkd...
+Patch1:		cloud-init-21.4-openmandriva-try-networkd.patch
 License:	Dual GPLv3/Apache 2.0
 BuildRequires:	python
 BuildRequires:	python3dist(setuptools)
