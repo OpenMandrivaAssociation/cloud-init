@@ -2,10 +2,10 @@
 
 Summary:	Cloud instance initialization tool
 Name:		cloud-init
-Version:	22.1
-Release:	2
+Version:	22.2
+Release:	1
 Source0:	https://github.com/canonical/cloud-init/archive/%{version}/%{name}-%{version}.tar.gz
-Patch0:		cloud-init-21.4-openmandriva.patch
+Patch0:		cloud-init-22.2-openmandriva.patch
 # TEST: inherit from debian rather than fedora to see if that fixes
 # putting ssh keys in place (while obviously breaking package
 # management)
