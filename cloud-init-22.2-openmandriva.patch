@@ -1,6 +1,6 @@
 diff -up cloud-init-22.2/cloudinit/config/cc_ntp.py.1~ cloud-init-22.2/cloudinit/config/cc_ntp.py
 --- cloud-init-22.2/cloudinit/config/cc_ntp.py.1~	2022-05-18 18:04:36.000000000 +0200
-+++ cloud-init-22.2/cloudinit/config/cc_ntp.py	2022-06-01 14:20:07.941923436 +0200
++++ cloud-init-22.2/cloudinit/config/cc_ntp.py	2022-06-01 14:29:55.430903064 +0200
 @@ -30,6 +30,7 @@ distros = [
      "fedora",
      "miraclelinux",
@@ -30,7 +30,7 @@ diff -up cloud-init-22.2/cloudinit/config/cc_ntp.py.1~ cloud-init-22.2/cloudinit
              "service_name": "chronyd",
 diff -up cloud-init-22.2/cloudinit/config/cc_yum_add_repo.py.1~ cloud-init-22.2/cloudinit/config/cc_yum_add_repo.py
 --- cloud-init-22.2/cloudinit/config/cc_yum_add_repo.py.1~	2022-05-18 18:04:36.000000000 +0200
-+++ cloud-init-22.2/cloudinit/config/cc_yum_add_repo.py	2022-06-01 14:20:07.941923436 +0200
++++ cloud-init-22.2/cloudinit/config/cc_yum_add_repo.py	2022-06-01 14:29:55.430903064 +0200
 @@ -29,6 +29,7 @@ distros = [
      "eurolinux",
      "fedora",
@@ -41,7 +41,7 @@ diff -up cloud-init-22.2/cloudinit/config/cc_yum_add_repo.py.1~ cloud-init-22.2/
      "rocky",
 diff -up cloud-init-22.2/cloudinit/distros/__init__.py.1~ cloud-init-22.2/cloudinit/distros/__init__.py
 --- cloud-init-22.2/cloudinit/distros/__init__.py.1~	2022-05-18 18:04:36.000000000 +0200
-+++ cloud-init-22.2/cloudinit/distros/__init__.py	2022-06-01 14:20:07.941923436 +0200
++++ cloud-init-22.2/cloudinit/distros/__init__.py	2022-06-01 14:29:55.430903064 +0200
 @@ -47,6 +47,7 @@ OSFAMILIES = {
          "fedora",
          "miraclelinux",
@@ -51,10 +51,10 @@ diff -up cloud-init-22.2/cloudinit/distros/__init__.py.1~ cloud-init-22.2/cloudi
          "rhel",
          "rocky",
 diff -up cloud-init-22.2/cloudinit/distros/openmandriva.py.1~ cloud-init-22.2/cloudinit/distros/openmandriva.py
---- cloud-init-22.2/cloudinit/distros/openmandriva.py.1~	2022-06-01 14:20:07.941923436 +0200
-+++ cloud-init-22.2/cloudinit/distros/openmandriva.py	2022-06-01 14:20:07.941923436 +0200
+--- cloud-init-22.2/cloudinit/distros/openmandriva.py.1~	2022-06-01 14:29:55.430903064 +0200
++++ cloud-init-22.2/cloudinit/distros/openmandriva.py	2022-06-01 14:29:55.430903064 +0200
 @@ -0,0 +1,12 @@
-+# Copyright (C) 2022 LinDev
++# Copyright (C) 2021 LinDev
 +#
 +# Author: Bernhard Rosenkraenzer <bero@lindev.ch>
 +#
@@ -68,7 +68,7 @@ diff -up cloud-init-22.2/cloudinit/distros/openmandriva.py.1~ cloud-init-22.2/cl
 +# vi: ts=4 expandtab
 diff -up cloud-init-22.2/cloudinit/net/sysconfig.py.1~ cloud-init-22.2/cloudinit/net/sysconfig.py
 --- cloud-init-22.2/cloudinit/net/sysconfig.py.1~	2022-05-18 18:04:36.000000000 +0200
-+++ cloud-init-22.2/cloudinit/net/sysconfig.py	2022-06-01 14:20:07.941923436 +0200
++++ cloud-init-22.2/cloudinit/net/sysconfig.py	2022-06-01 14:29:55.430903064 +0200
 @@ -28,6 +28,7 @@ KNOWN_DISTROS = [
      "fedora",
      "miraclelinux",
@@ -79,7 +79,7 @@ diff -up cloud-init-22.2/cloudinit/net/sysconfig.py.1~ cloud-init-22.2/cloudinit
      "suse",
 diff -up cloud-init-22.2/cloudinit/util.py.1~ cloud-init-22.2/cloudinit/util.py
 --- cloud-init-22.2/cloudinit/util.py.1~	2022-05-18 18:04:36.000000000 +0200
-+++ cloud-init-22.2/cloudinit/util.py	2022-06-01 14:20:07.941923436 +0200
++++ cloud-init-22.2/cloudinit/util.py	2022-06-01 14:29:55.431903067 +0200
 @@ -601,6 +601,7 @@ def _get_variant(info):
              "fedora",
              "miraclelinux",
@@ -90,7 +90,7 @@ diff -up cloud-init-22.2/cloudinit/util.py.1~ cloud-init-22.2/cloudinit/util.py
              "rocky",
 diff -up cloud-init-22.2/config/cloud.cfg.tmpl.1~ cloud-init-22.2/config/cloud.cfg.tmpl
 --- cloud-init-22.2/config/cloud.cfg.tmpl.1~	2022-05-18 18:04:36.000000000 +0200
-+++ cloud-init-22.2/config/cloud.cfg.tmpl	2022-06-01 14:26:15.811150749 +0200
++++ cloud-init-22.2/config/cloud.cfg.tmpl	2022-06-01 18:19:01.081690117 +0200
 @@ -33,7 +33,7 @@ disable_root: true
  {% endif %}
  
@@ -100,7 +100,21 @@ diff -up cloud-init-22.2/config/cloud.cfg.tmpl.1~ cloud-init-22.2/config/cloud.c
  {% if variant == "rhel" %}
  mount_default_fields: [~, ~, 'auto', 'defaults,nofail,x-systemd.requires=cloud-init.service,_netdev', '0', '2']
  {% else %}
-@@ -125,8 +125,8 @@ cloud_config_modules:
+@@ -43,7 +43,12 @@ mount_default_fields: [~, ~, 'auto', 'de
+ resize_rootfs: noblock
+ {% endif %}
+ resize_rootfs_tmp: /dev
+-ssh_pwauth:   0
++{% if variant == "openmandriva" %}
++# For now, until ssh keys work reliably on OCI
++ssh_pwauth: true
++{% else %}
++ssh_pwauth:   false
++{% endif %}
+ 
+ {% endif %}
+ # This will cause the set+update hostname module to not operate (if true)
+@@ -125,8 +130,8 @@ cloud_config_modules:
  {% if variant in ["rhel"] %}
   - rh_subscription
  {% endif %}
@@ -111,7 +125,7 @@ diff -up cloud-init-22.2/config/cloud.cfg.tmpl.1~ cloud-init-22.2/config/cloud.c
   - spacewalk
  {% endif %}
   - yum-add-repo
-@@ -192,7 +192,7 @@ system_info:
+@@ -192,7 +197,7 @@ system_info:
     # This will affect which distro class gets used
  {% if variant in ["almalinux", "alpine", "amazon", "arch", "centos", "cloudlinux", "debian",
                    "eurolinux", "fedora", "freebsd", "gentoo", "netbsd", "miraclelinux", "openbsd", "openEuler",
@@ -120,7 +134,7 @@ diff -up cloud-init-22.2/config/cloud.cfg.tmpl.1~ cloud-init-22.2/config/cloud.c
     distro: {{ variant }}
  {% elif variant in ["dragonfly"] %}
     distro: dragonflybsd
-@@ -245,7 +245,7 @@ system_info:
+@@ -245,7 +250,7 @@ system_info:
           security: http://ports.ubuntu.com/ubuntu-ports
     ssh_svcname: ssh
  {% elif variant in ["almalinux", "alpine", "amazon", "arch", "centos", "cloudlinux", "eurolinux",
@@ -129,7 +143,7 @@ diff -up cloud-init-22.2/config/cloud.cfg.tmpl.1~ cloud-init-22.2/config/cloud.c
     # Default user name + that default users groups (if added/used)
     default_user:
  {% if variant == "amazon" %}
-@@ -271,6 +271,8 @@ system_info:
+@@ -271,6 +276,8 @@ system_info:
       groups: [adm, sudo]
  {% elif variant == "arch" %}
       groups: [wheel, users]
@@ -138,7 +152,7 @@ diff -up cloud-init-22.2/config/cloud.cfg.tmpl.1~ cloud-init-22.2/config/cloud.c
  {% elif variant == "rhel" %}
       groups: [adm, systemd-journal]
  {% else %}
-@@ -349,4 +351,7 @@ system_info:
+@@ -349,4 +356,7 @@ system_info:
  {% elif variant in ["dragonfly"] %}
     network:
        renderers: ['freebsd']
@@ -147,8 +161,8 @@ diff -up cloud-init-22.2/config/cloud.cfg.tmpl.1~ cloud-init-22.2/config/cloud.c
 +      renderers: ['network-manager', 'networkd']
  {% endif %}
 diff -up cloud-init-22.2/systemd/cloud-init-generator.tmpl.1~ cloud-init-22.2/systemd/cloud-init-generator.tmpl
---- cloud-init-22.2/systemd/cloud-init-generator.tmpl.1~	2022-06-01 14:20:07.942923440 +0200
-+++ cloud-init-22.2/systemd/cloud-init-generator.tmpl	2022-06-01 14:26:54.896283822 +0200
+--- cloud-init-22.2/systemd/cloud-init-generator.tmpl.1~	2022-05-18 18:04:36.000000000 +0200
++++ cloud-init-22.2/systemd/cloud-init-generator.tmpl	2022-06-01 14:29:55.431903067 +0200
 @@ -21,7 +21,7 @@ CLOUD_SYSTEM_TARGET="/usr/lib/systemd/sy
  CLOUD_SYSTEM_TARGET="/lib/systemd/system/cloud-init.target"
  {% endif %}
@@ -160,7 +174,7 @@ diff -up cloud-init-22.2/systemd/cloud-init-generator.tmpl.1~ cloud-init-22.2/sy
      dsidentify="/usr/lib/cloud-init/ds-identify"
 diff -up cloud-init-22.2/systemd/cloud-init.service.tmpl.1~ cloud-init-22.2/systemd/cloud-init.service.tmpl
 --- cloud-init-22.2/systemd/cloud-init.service.tmpl.1~	2022-05-18 18:04:36.000000000 +0200
-+++ cloud-init-22.2/systemd/cloud-init.service.tmpl	2022-06-01 14:20:07.942923440 +0200
++++ cloud-init-22.2/systemd/cloud-init.service.tmpl	2022-06-01 14:29:55.431903067 +0200
 @@ -13,7 +13,7 @@ After=systemd-networkd-wait-online.servi
  After=networking.service
  {% endif %}
@@ -172,7 +186,7 @@ diff -up cloud-init-22.2/systemd/cloud-init.service.tmpl.1~ cloud-init-22.2/syst
  {% endif %}
 diff -up cloud-init-22.2/tools/render-cloudcfg.1~ cloud-init-22.2/tools/render-cloudcfg
 --- cloud-init-22.2/tools/render-cloudcfg.1~	2022-05-18 18:04:36.000000000 +0200
-+++ cloud-init-22.2/tools/render-cloudcfg	2022-06-01 14:20:07.942923440 +0200
++++ cloud-init-22.2/tools/render-cloudcfg	2022-06-01 14:29:55.431903067 +0200
 @@ -25,6 +25,7 @@ def main():
          "netbsd",
          "openbsd",
