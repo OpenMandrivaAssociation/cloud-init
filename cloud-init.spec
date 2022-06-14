@@ -1,3 +1,8 @@
+# Unfortunately tests fail inside of abf because
+# they try to open sockets.
+# Run the tests before throwing the package at
+# abf though...
+%bcond_with tests
 %define debug_package %{nil}
 
 Summary:	Cloud instance initialization tool
@@ -31,11 +36,12 @@ BuildRequires:	python3dist(jsonpatch)
 BuildRequires:	python3dist(oauthlib)
 BuildRequires:	python3dist(pyserial)
 BuildRequires:	python3dist(netifaces)
-# Required only for unit tests
+%if %{with tests}
 BuildRequires:	python3dist(httpretty)
 BuildRequires:	python3dist(pytest)
 BuildRequires:	python3dist(pytest-mock)
 BuildRequires:	python3dist(responses)
+%endif
 Requires:	hostname
 Requires:	e2fsprogs
 Requires:	iproute
@@ -76,8 +82,10 @@ cp doc/man/cloud-{id,init,init-per}.1 %{buildroot}%{_mandir}/man1/
 # Let's debug this for now...
 sed -i -e 's,/usr/bin/cloud-init,/usr/bin/cloud-init --debug,g' %{buildroot}/lib/systemd/system/*.service
 
+%if %{with tests}
 %check
 python -m pytest tests/unittests
+%endif
 
 %files
 %{_bindir}/*
