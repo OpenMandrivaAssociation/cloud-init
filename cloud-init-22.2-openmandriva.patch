@@ -195,3 +195,15 @@ diff -up cloud-init-22.2/tools/render-cloudcfg.1~ cloud-init-22.2/tools/render-c
          "photon",
          "rhel",
          "suse",
+diff -up cloud-init-22.2/tests/unittests/test_cli.py.omv~ cloud-init-22.2/tests/unittests/test_cli.py
+--- cloud-init-22.2/tests/unittests/test_cli.py.omv~	2022-06-15 00:41:33.802689669 +0200
++++ cloud-init-22.2/tests/unittests/test_cli.py	2022-06-15 00:41:44.664741436 +0200
+@@ -260,7 +260,7 @@ class TestCLI(test_helpers.FilesystemMoc
+                 "**Supported distros:** all",
+                 "**Supported distros:** almalinux, alpine, centos, "
+                 "cloudlinux, debian, eurolinux, fedora, miraclelinux, "
+-                "openEuler, opensuse, photon, rhel, rocky, sles, ubuntu, "
++                "openEuler, openmandriva, opensuse, photon, rhel, rocky, sles, ubuntu, "
+                 "virtuozzo",
+                 "**Config schema**:\n    **resize_rootfs:** "
+                 "(``true``/``false``/``noblock``)",
