@@ -8,7 +8,7 @@
 Summary:	Cloud instance initialization tool
 Name:		cloud-init
 Version:	22.2
-Release:	4
+Release:	5
 Source0:	https://github.com/canonical/cloud-init/archive/%{version}/%{name}-%{version}.tar.gz
 Source1:	https://src.fedoraproject.org/rpms/cloud-init/raw/rawhide/f/cloud-init-tmpfiles.conf
 Patch0:		cloud-init-22.2-openmandriva.patch
@@ -56,6 +56,7 @@ Requires:	util-linux
 Requires:	xfsprogs
 Requires:	gptfdisk
 Requires:	openssl
+Requires:	growpart
 # Apparently missed by the dependency generator:
 Requires:	python3dist(distro)
 Requires:	python3dist(pyserial)
@@ -83,8 +84,10 @@ install -c -m 644 %{S:1} %{buildroot}%{_tmpfilesdir}/%{name}.conf
 mkdir -p %{buildroot}%{_mandir}/man1
 cp doc/man/cloud-{id,init,init-per}.1 %{buildroot}%{_mandir}/man1/
 
+%if 0
 # Let's debug this for now...
 sed -i -e 's,/usr/bin/cloud-init,/usr/bin/cloud-init --debug,g' %{buildroot}/lib/systemd/system/*.service
+%endif
 
 %if %{with tests}
 %check
