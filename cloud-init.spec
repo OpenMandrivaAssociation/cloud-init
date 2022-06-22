@@ -8,7 +8,7 @@
 Summary:	Cloud instance initialization tool
 Name:		cloud-init
 Version:	22.2
-Release:	5
+Release:	6
 Source0:	https://github.com/canonical/cloud-init/archive/%{version}/%{name}-%{version}.tar.gz
 Source1:	https://src.fedoraproject.org/rpms/cloud-init/raw/rawhide/f/cloud-init-tmpfiles.conf
 Patch0:		cloud-init-22.2-openmandriva.patch
@@ -16,6 +16,7 @@ Patch0:		cloud-init-22.2-openmandriva.patch
 # putting ssh keys in place (while obviously breaking package
 # management)
 #Patch1:		cloud-init-21.4-test-openmandriva-inherit-debian.patch
+Patch2:		cloud-init-22.2-fix-udevrulesdir.patch
 License:	Dual GPLv3/Apache 2.0
 BuildRequires:	python
 BuildRequires:	python3dist(setuptools)
@@ -62,7 +63,7 @@ Requires:	python3dist(distro)
 Requires:	python3dist(pyserial)
 
 %description
-Cloud instance initialization tool
+Cloud instance initialization tool.
 
 %prep
 %autosetup -p1
@@ -86,7 +87,7 @@ cp doc/man/cloud-{id,init,init-per}.1 %{buildroot}%{_mandir}/man1/
 
 %if 0
 # Let's debug this for now...
-sed -i -e 's,/usr/bin/cloud-init,/usr/bin/cloud-init --debug,g' %{buildroot}/lib/systemd/system/*.service
+sed -i -e 's,/usr/bin/cloud-init,/usr/bin/cloud-init --debug,g' %{buildroot}%{_unitdir}/*.service
 %endif
 
 %if %{with tests}
@@ -98,17 +99,17 @@ python -m pytest tests/unittests
 %{_bindir}/*
 %{_prefix}/lib/python*/site-packages/cloudinit
 %{_prefix}/lib/python*/site-packages/cloud_init*.egg-info
-/lib/systemd/system-generators/cloud-init-generator
-/lib/systemd/system/cloud*.target
-/lib/systemd/system/cloud*.service
-/etc/systemd/system/sshd-keygen@.service.d
-/lib/systemd/system/cloud-init-hotplugd.socket
+%{_systemdgeneratordir}/cloud-init-generator
+%{_unitdir}/cloud*.target
+%{_unitdir}/cloud*.service
+%{_sysconfdir}/systemd/system/sshd-keygen@.service.d
+%{_unitdir}/cloud-init-hotplugd.socket
 %{_datadir}/bash-completion/completions/*
 %{_sysconfdir}/cloud
 %{_sysconfdir}/NetworkManager/dispatcher.d/hook-network-manager
 %{_sysconfdir}/dhcp/dhclient-exit-hooks.d/hook-dhclient
 %{_libexecdir}/cloud-init
 %doc %{_docdir}/cloud-init
-/lib/udev/rules.d/66-azure-ephemeral.rules
-%{_mandir}/man1/*.1*
+%{_udevrulesdir}/*.rules
+%doc %{_mandir}/man1/*.1*
 %{_tmpfilesdir}/%{name}.conf

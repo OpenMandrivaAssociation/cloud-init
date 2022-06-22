@@ -1,0 +1,11 @@
+--- cloud-init-22.2/setup.py	2022-05-18 16:04:36.000000000 +0000
++++ cloud-init-22.2/setup.py.tpg	2022-06-22 09:47:56.925664062 +0000
+@@ -310,7 +310,7 @@
+                 ["tools/hook-network-manager"],
+             ),
+             (ETC + "/dhcp/dhclient-exit-hooks.d/", ["tools/hook-dhclient"]),
+-            (LIB + "/udev/rules.d", [f for f in glob("udev/*.rules")]),
++            (USR + LIB + "/udev/rules.d", [f for f in glob("udev/*.rules")]),
+             (
+                 ETC + "/systemd/system/sshd-keygen@.service.d/",
+                 ["systemd/disable-sshd-keygen-if-cloud-init-active.conf"],
