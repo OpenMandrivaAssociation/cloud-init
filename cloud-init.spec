@@ -7,16 +7,13 @@
 
 Summary:	Cloud instance initialization tool
 Name:		cloud-init
-Version:	22.2
-Release:	6
+Version:	22.2.2
+Release:	1
 Source0:	https://github.com/canonical/cloud-init/archive/%{version}/%{name}-%{version}.tar.gz
 Source1:	https://src.fedoraproject.org/rpms/cloud-init/raw/rawhide/f/cloud-init-tmpfiles.conf
 Patch0:		cloud-init-22.2-openmandriva.patch
-# TEST: inherit from debian rather than fedora to see if that fixes
-# putting ssh keys in place (while obviously breaking package
-# management)
-#Patch1:		cloud-init-21.4-test-openmandriva-inherit-debian.patch
-Patch2:		cloud-init-22.2-fix-udevrulesdir.patch
+Patch1:		cloud-init-22.2-fix-udevrulesdir.patch
+Patch2:		https://github.com/berolinux/cloud-init/commit/ba34af8e69b115918c78f97b76d25b67502906ec.patch
 License:	Dual GPLv3/Apache 2.0
 BuildRequires:	python
 BuildRequires:	python3dist(setuptools)
