@@ -1,19 +1,16 @@
+%undefine debugsource_packages
 # Unfortunately tests fail inside of abf because
 # they try to open sockets.
 # Run the tests before throwing the package at
 # abf though...
 %bcond_with tests
-%define debug_package %{nil}
 
 Summary:	Cloud instance initialization tool
 Name:		cloud-init
-Version:	22.2.2
+Version:	23.1
 Release:	1
 Source0:	https://github.com/canonical/cloud-init/archive/%{version}/%{name}-%{version}.tar.gz
 Source1:	https://src.fedoraproject.org/rpms/cloud-init/raw/rawhide/f/cloud-init-tmpfiles.conf
-Patch0:		cloud-init-22.2-openmandriva.patch
-Patch1:		cloud-init-22.2-fix-udevrulesdir.patch
-Patch2:		https://github.com/berolinux/cloud-init/commit/ba34af8e69b115918c78f97b76d25b67502906ec.patch
 License:	Dual GPLv3/Apache 2.0
 BuildRequires:	python
 BuildRequires:	python3dist(setuptools)
