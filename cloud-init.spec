@@ -1,4 +1,4 @@
-%undefine debugsource_packages
+%undefine _debugsource_packages
 # Unfortunately tests fail inside of abf because
 # they try to open sockets.
 # Run the tests before throwing the package at
