@@ -7,8 +7,8 @@
 
 Summary:	Cloud instance initialization tool
 Name:		cloud-init
-Version:	23.1
-Release:	2
+Version:	23.3.3
+Release:	1
 Source0:	https://github.com/canonical/cloud-init/archive/%{version}/%{name}-%{version}.tar.gz
 Source1:	https://src.fedoraproject.org/rpms/cloud-init/raw/rawhide/f/cloud-init-tmpfiles.conf
 License:	Dual GPLv3/Apache 2.0
@@ -100,8 +100,6 @@ python -m pytest tests/unittests
 %{_unitdir}/cloud-init-hotplugd.socket
 %{_datadir}/bash-completion/completions/*
 %{_sysconfdir}/cloud
-%{_sysconfdir}/NetworkManager/dispatcher.d/hook-network-manager
-%{_sysconfdir}/dhcp/dhclient-exit-hooks.d/hook-dhclient
 %{_libexecdir}/cloud-init
 %doc %{_docdir}/cloud-init
 %{_udevrulesdir}/*.rules
