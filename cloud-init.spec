@@ -14,6 +14,7 @@ Source1:	https://src.fedoraproject.org/rpms/cloud-init/raw/rawhide/f/cloud-init-
 License:	Dual GPLv3/Apache 2.0
 BuildRequires:	python
 BuildRequires:	python3dist(setuptools)
+BuildRequires:	udev
 BuildRequires:	pkgconfig(bash-completion)
 BuildRequires:	pkgconfig(libnm)
 BuildRequires:	pkgconfig(systemd)
