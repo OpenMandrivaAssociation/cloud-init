@@ -7,7 +7,7 @@
 
 Summary:	Cloud instance initialization tool
 Name:		cloud-init
-Version:	24.4
+Version:	25.1.2
 Release:	1
 Source0:	https://github.com/canonical/cloud-init/archive/%{version}/%{name}-%{version}.tar.gz
 Source1:	https://src.fedoraproject.org/rpms/cloud-init/raw/rawhide/f/cloud-init-tmpfiles.conf
