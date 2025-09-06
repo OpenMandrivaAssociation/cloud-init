@@ -8,7 +8,7 @@
 Summary:	Cloud instance initialization tool
 Name:		cloud-init
 Version:	25.2
-Release:	1
+Release:	2
 Source0:	https://github.com/canonical/cloud-init/archive/%{version}/%{name}-%{version}.tar.gz
 Source1:	https://src.fedoraproject.org/rpms/cloud-init/raw/rawhide/f/cloud-init-tmpfiles.conf
 License:	Dual GPLv3/Apache 2.0
@@ -41,7 +41,7 @@ BuildRequires:	python%{pyver}dist(responses)
 # Yes, even when using NetworkManager.
 # dhcp-client is used to locate the server
 # containing the config.
-Requires:	dhcp-client
+Requires:	(dhcpcd or dhcp-client or udhcpc)
 Requires:	hostname
 Requires:	e2fsprogs
 Requires:	iproute
