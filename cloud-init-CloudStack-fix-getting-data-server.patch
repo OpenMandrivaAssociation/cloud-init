@@ -1,0 +1,23 @@
+diff -up cloud-init-25.2/cloudinit/sources/DataSourceCloudStack.py.omv~ cloud-init-25.2/cloudinit/sources/DataSourceCloudStack.py
+--- cloud-init-25.2/cloudinit/sources/DataSourceCloudStack.py.omv~	2025-09-07 06:08:21.203964808 +0200
++++ cloud-init-25.2/cloudinit/sources/DataSourceCloudStack.py	2025-09-07 06:11:33.464084927 +0200
+@@ -296,6 +296,10 @@ def get_data_server():
+     except gaierror:
+         LOG.debug("DNS Entry data-server not found")
+         return None
++    except Exception as e:
++        # getaddrinfo can fail with exceptions other than gaierror
++        LOG.debug("Attempt to look up DNS for data-server failed: %s", str(e))
++        return None
+     else:
+         return addrinfo[0][4][0]  # return IP
+ 
+@@ -347,7 +351,7 @@ def get_vr_address(distro):
+             return latest_address
+ 
+     with suppress(FileNotFoundError):
+-        latest_lease = distro.dhcp_client.get_newest_lease(distro)
++        latest_lease = distro.dhcp_client.get_newest_lease(distro.fallback_interface)
+         if latest_lease:
+             LOG.debug(
+                 "Found SERVER_ADDRESS '%s' via ephemeral %s lease ",
