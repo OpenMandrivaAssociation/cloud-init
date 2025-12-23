@@ -7,11 +7,12 @@
 
 Summary:	Cloud instance initialization tool
 Name:		cloud-init
-Version:	25.2
-Release:	4
+Version:	25.3
+Release:	1
 Source0:	https://github.com/canonical/cloud-init/archive/%{version}/%{name}-%{version}.tar.gz
 Source1:	https://src.fedoraproject.org/rpms/cloud-init/raw/rawhide/f/cloud-init-tmpfiles.conf
 License:	Dual GPLv3/Apache 2.0
+BuildSystem:	meson
 BuildRequires:	python
 BuildRequires:	python%{pyver}dist(setuptools)
 BuildRequires:	pkgconfig(udev)
@@ -64,20 +65,13 @@ Cloud instance initialization tool.
 %patchlist
 cloud-init-CloudStack-fix-getting-data-server.patch
 
-%prep
-%autosetup -p1
-
+%prep -a
 # Use unittest from the standard library. unittest2 is old and being
 # retired in modern distros.
 find tests/ -type f | xargs sed -i s/unittest2/unittest/
 find tests/ -type f | xargs sed -i s/assertItemsEqual/assertCountEqual/
 
-%build
-python setup.py build
-
-%install
-python setup.py install --root=%{buildroot} --prefix=%{_prefix}
-
+%install -a
 mkdir -p %{buildroot}/run/cloud-init %{buildroot}%{_tmpfilesdir}
 install -c -m 644 %{S:1} %{buildroot}%{_tmpfilesdir}/%{name}.conf
 
@@ -97,13 +91,13 @@ python -m pytest tests/unittests
 %files
 %{_bindir}/*
 %{_prefix}/lib/python*/site-packages/cloudinit
-%{_prefix}/lib/python*/site-packages/cloud_init*.egg-info
+#%{_prefix}/lib/python*/site-packages/cloud_init*.egg-info
 %{_systemdgeneratordir}/cloud-init-generator
 %{_unitdir}/cloud*.target
 %{_unitdir}/cloud*.service
 %{_unitdir}/cloud-init-hotplugd.socket
-%dir %{_unitdir}/sshd-keygen@.service.d
-%{_unitdir}/sshd-keygen@.service.d/disable-sshd-keygen-if-cloud-init-active.conf
+#dir %{_unitdir}/sshd-keygen@.service.d
+#{_unitdir}/sshd-keygen@.service.d/disable-sshd-keygen-if-cloud-init-active.conf
 %{_datadir}/bash-completion/completions/*
 %{_sysconfdir}/cloud
 %{_libexecdir}/cloud-init
