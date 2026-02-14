@@ -8,7 +8,7 @@
 Summary:	Cloud instance initialization tool
 Name:		cloud-init
 Version:	25.3
-Release:	1
+Release:	2
 Source0:	https://github.com/canonical/cloud-init/archive/%{version}/%{name}-%{version}.tar.gz
 Source1:	https://src.fedoraproject.org/rpms/cloud-init/raw/rawhide/f/cloud-init-tmpfiles.conf
 License:	Dual GPLv3/Apache 2.0
@@ -57,6 +57,9 @@ Requires:	growpart
 # Apparently missed by the dependency generator:
 Requires:	python%{pyver}dist(distro)
 Requires:	python%{pyver}dist(pyserial)
+# Needed at least to run in Contabo (Proxmox):
+Requires:	python%{pyver}dist(configobj)
+Requires:	python%{pyver}dist(jsonpatch)
 BuildArch:	noarch
 
 %description
