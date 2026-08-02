@@ -7,9 +7,9 @@
 
 Summary:	Cloud instance initialization tool
 Name:		cloud-init
-Version:	25.3
-Release:	3
-Source0:	https://github.com/canonical/cloud-init/archive/%{version}/%{name}-%{version}.tar.gz
+Version:	26.2
+Release:	1
+Source0:	https://github.com/canonical/cloud-init/archive/refs/tags/%{version}/%{name}-%{version}.tar.gz
 Source1:	https://src.fedoraproject.org/rpms/cloud-init/raw/rawhide/f/cloud-init-tmpfiles.conf
 License:	Dual GPLv3/Apache 2.0
 BuildSystem:	meson
